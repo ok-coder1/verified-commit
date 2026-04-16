@@ -46,8 +46,8 @@ export class Blob extends Resource {
       Readable.from('"}'),
     ];
 
-    // Produces the JSON body as a stream, so that we don't have to read (
-    // potentially very large) files into memory
+    // Produces the JSON body as a stream, so that we don't have to read
+    // (potentially very large) files into memory
     return new MultiStream(streams);
   }
 
@@ -61,7 +61,7 @@ export class Blob extends Resource {
       this.stream
     );
     this.sha = response.data.sha;
-    this.debug(`Sha for blob ${this.file}: ${this.sha}.`);
+    this.debug(`SHA for blob ${this.file}: ${this.sha}.`);
   }
 }
 
