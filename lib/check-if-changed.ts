@@ -13,7 +13,7 @@ const execute = async (command: string): Promise<number> => {
 };
 
 const ifFilesChanged = async (): Promise<string[]> => {
-  const files = getInput("files", { required: true }).trim().split("\n");
+  const files = getInput("files", { required: false }).trim().split("\n");
   let changed: string[] = [];
   for (const file of files) {
     let exitCode = await execute(`git diff --exit-code ${file}`);
@@ -21,6 +21,9 @@ const ifFilesChanged = async (): Promise<string[]> => {
       changed.push(file);
     }
   }
+  changed = changed
+    .map((line) => line.substring(3))
+    .join("\n");
   return changed;
 };
 
