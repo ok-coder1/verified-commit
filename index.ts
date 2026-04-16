@@ -7,6 +7,7 @@ import { getBlobsFromFiles } from "./lib/blob";
 import { Tree } from "./lib/tree";
 import { Commit } from "./lib/commit";
 import changedFiles from "./lib/detect-changed";
+import ifFilesChanged from "./lib/check-if-changed";
 
 export default async function run(): Promise<void> {
   try {
@@ -21,7 +22,7 @@ export default async function run(): Promise<void> {
 
     const files = detectChanged
       ? await changedFiles()
-      : getInput("files", { required: false });
+      : await ifFilesChanged();
     if (!files) {
       core.info("Files to be committed are not specified.");
       return;
