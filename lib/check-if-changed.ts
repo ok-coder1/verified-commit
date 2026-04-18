@@ -1,15 +1,13 @@
 import * as exec from "@actions/exec";
 
-import { getInput } from "./lib/input";
+import { getInput } from "./input";
 
 const execute = async (command: string): Promise<number> => {
-  let output = "";
   const options = {
     ignoreReturnCode: true,
     silent: true
   };
-  await exec.exec(command, null, options);
-  return output;
+  return await exec.exec(command, null, options);
 };
 
 const ifFilesChanged = async (): Promise<string> => {
@@ -21,9 +19,7 @@ const ifFilesChanged = async (): Promise<string> => {
       changed.push(file);
     }
   }
-  changed = changed
-    .map((line) => line.substring(3))
-    .join("\n");
+  changed = changed.join("\n");
   return changed;
 };
 
