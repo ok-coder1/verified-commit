@@ -12,7 +12,7 @@ const execute = async (command: string): Promise<number> => {
   return output;
 };
 
-const ifFilesChanged = async (): Promise<string[]> => {
+const ifFilesChanged = async (): Promise<string> => {
   const files = getInput("files", { required: false }).trim().split("\n");
   let changed: string[] = [];
   for (const file of files) {
