@@ -19,8 +19,7 @@ const ifFilesChanged = async (): Promise<string> => {
       changed.push(file);
     }
   }
-  changed = changed.join("\n");
-  return changed;
+  return changed.join("\n");
 };
 
 export default ifFilesChanged;
